@@ -1,6 +1,7 @@
 import CartItem from "./cartItem";
 
 const Cart = (props) => {
+  
   return (
     <div className="p-4">
       {props.items.map((item, i) => {

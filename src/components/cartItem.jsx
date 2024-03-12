@@ -1,7 +1,27 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 const CartItem = (props) => {
+  const [cartItem, setCartItem] = useState({
+    ...props.item,
+  });
+
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:3000/products/${props.item.prdId}`
+        );
+        setCartItem({ ...cartItem, price: data.price, name: data.name });
+      } catch (error) {
+        props.deleteItem(props.item)
+      }
+    };
+    fetchProductDetails();
+  }, [cartItem]);
   return (
     <div className="flex gap-4 my-4">
-      <div className="flex-auto">{props.item.name}</div>
+      <div className="flex-auto">{cartItem.name}</div>
       <button
         onClick={() => props.handleDecrement(props.item)}
         className="bg-slate-200 px-3 rounded-sm"

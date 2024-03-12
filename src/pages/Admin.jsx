@@ -66,7 +66,7 @@ const Admin = (props) => {
         </tbody>
       </table>
       <Link to="/products/add">
-        <div className="btn mt-3" onClick={props.handleAddProduct}>
+        <div className="btn mt-3">
           Add product
         </div>
       </Link>

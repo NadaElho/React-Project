@@ -51,10 +51,8 @@ function App() {
     let count = cartItems.findIndex((ele) => ele.id == item.id);
     async function add() {
       let { data } = await axios.post("http://localhost:3000/cart", {
-        name: item.name,
-        price: item.price,
         count: 1,
-        id: item.id,
+        prdId: item.id,
       });
       setCartItems([...cartItems, data]);
     }
@@ -74,20 +72,27 @@ function App() {
   };
   const handleReset = () => {
     let newItems = [...cartItems];
-    newItems.map((item) => {
+    newItems.map(async(item) => {
       item.count = 0;
+      await axios.patch("http://localhost:3000/cart/" + item.id, {
+      count: 0,
+    });
     });
     setCartItems(newItems);
   };
 
   const HandleIncrement = async (cartItem) => {
+    let id = 0
+    console.log(cartItems);
     let newItems = cartItems.map((item) => {
-      if (item.name == cartItem.name) {
+      if (item.id == cartItem.id) {
+        id=item.id
         item = { ...item, count: item.count + 1 };
       }
       return item;
     });
-    await axios.patch("http://localhost:3000/cart/" + cartItem.id, {
+
+    await axios.patch("http://localhost:3000/cart/" + id, {
       count: cartItem.count + 1,
     });
     setCartItems(newItems);
@@ -96,7 +101,7 @@ function App() {
   const HandleDecrement = (cartItem) => {
     let newItems = [...cartItems];
     newItems.map((item, i) => {
-      if (item.name == cartItem.name && item.count != 0) {
+      if (item.id == cartItem.id && item.count != 0) {
         newItems[i] = { ...item, count: item.count - 1 };
       }
     });
@@ -190,7 +195,6 @@ function App() {
             element={
               <ProductsAdmin
                 items={items}
-                // categories={categories}
                 handleAddProduct={handleAddProduct}
               />
             }
@@ -217,9 +221,7 @@ function App() {
             element={
               <Menu
                 items={toShowItems}
-                // selectedCatId={selectedCatId}
                 addToCart={addToCart}
-                // categories={categories}
                 filterByCat={filterByCat}
                 cartItems={cartItems}
                 handleSearch={handleSearch}
