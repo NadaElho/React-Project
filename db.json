@@ -1,0 +1,67 @@
+{
+  "products": [
+    {
+      "id": "b58d",
+      "name": "Buffalo Chicken",
+      "price": 100,
+      "catId": "2",
+      "count": 0
+    },
+    {
+      "id": "08a3",
+      "name": "Margerita",
+      "price": 80,
+      "catId": "1",
+      "count": 0
+    },
+    {
+      "id": "3cc1",
+      "name": "Fries Large",
+      "price": 20,
+      "catId": "3",
+      "count": 0
+    },
+    {
+      "id": "1533",
+      "name": "Wedge Fries",
+      "price": 50,
+      "catId": "3",
+      "count": 0
+    },
+    {
+      "id": "1c2f",
+      "name": "BBQ",
+      "price": 100,
+      "catId": "1",
+      "count": 0
+    }
+  ],
+  "cart": [
+    {
+      "id": "b58d",
+      "name": "Buffalo Chicken",
+      "price": 100,
+      "count": 2
+    },
+    {
+      "id": "08a3",
+      "name": "Margerita",
+      "price": 80,
+      "count": 2
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Pizza"
+    },
+    {
+      "id": "2",
+      "name": "Sandwiches"
+    },
+    {
+      "id": "3",
+      "name": "Fries"
+    }
+  ]
+}
